@@ -1,0 +1,22 @@
+{
+  "name": "bookworm",
+  "version": "1.0.0",
+  "description": "A command line application that uses the Google Books API to search for books and has the ability to add them to a \"Reading List\"",
+  "main": "App.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ManahanJ/GoogleBooksAPISearch.git"
+  },
+  "author": "Jonathan Manahan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ManahanJ/GoogleBooksAPISearch/issues"
+  },
+  "homepage": "https://github.com/ManahanJ/GoogleBooksAPISearch#readme",
+  "dependencies": {
+    "jest": "^27.4.5"
+  }
+}
