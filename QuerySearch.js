@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-export default class QueryResults {
+export default class QuerySearch {
     // Wrapper around fetch for mocking purposes
     googleQuery(query) {
         return fetch('https://www.googleapis.com/books/v1/volumes?q=' + String(query) + '&fields=items(volumeInfo)', {
@@ -10,7 +10,6 @@ export default class QueryResults {
         })
         .then(response => response.json())
         .then(result => {
-            console.log('Success');
             return result.items;
         })
         .catch(error => {

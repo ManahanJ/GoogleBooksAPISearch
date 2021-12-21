@@ -1,13 +1,13 @@
 export default class ReadingList {
     constructor() {
-        this.readingList = []
+        this.readingList = [];
     }
 
     getBooks() {
-        return this.readingList
+        return this.readingList;
     }
 
     saveBook(book) {
-        this.readingList.push(book)
+        this.readingList.push(book);
     }
 }
