@@ -1,6 +1,6 @@
 import readline from 'readline';
 import dotenv from 'dotenv';
-import DisplayList from './DisplayList.js';
+import DisplayBooks from './DisplayBooks.js';
 import ReadingList from './ReadingList.js';
 import QuerySearch from './QuerySearch.js';
 import Library from './Library.js';
@@ -14,12 +14,12 @@ async function App() {
     });
     const readingList = new ReadingList();
     const query = new QuerySearch();
-    const formattedBooks = new DisplayList();
+    const formattedBooks = new DisplayBooks();
 
     const awaitingUserInput = async () => {
         while(!exit) {
             displayStartingPrompt();
-            const initialInput = await retrieveUserInput('Please enter a number assosciated with the action you want to do and then press enter: ', userInput);
+            const initialInput = await retrieveUserInput('Please enter a number associated with the action you want to do and then press enter: ', userInput);
             if(initialInput == 1) {
                 await searchBook(query, readingList, formattedBooks, userInput);
             }
@@ -59,17 +59,17 @@ async function searchBook(query, readingList, formattedBooks, userInput) {
     const books = await library.getBooks(searchInput);
 
     formattedBooks.displayList(books);
-    const savedBookNumber = await retrieveUserInput('Please enter a number assosciated with the book you want to save to your reading list and then press enter, if no books were found or to save nothing just press enter: ', userInput);
+    const savedBookNumber = await retrieveUserInput('Please enter a number associated with the book you want to save to your reading list and then press enter, if no books were found or to save nothing just press enter: ', userInput);
     saveBook(readingList, books, savedBookNumber);
 }
 
-function saveBook(readingList, books, savedBookNumber) {
+export default function saveBook(readingList, books, savedBookNumber) {
     const selectedBook = books.getBook(savedBookNumber);
     if(!savedBookNumber) {
         console.log('No book has been saved like requested. \r\n')
     }
     else if(selectedBook == undefined){
-        console.log('ALERT: No book has been saved, please enter in a number that is assosciated with a displayed book next time! \r\n')
+        console.log('ALERT: No book has been saved, please enter in a number that is associated with a displayed book next time! \r\n')
     }
     else{
         readingList.saveBook(selectedBook);

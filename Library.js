@@ -29,7 +29,7 @@ export default class Library {
                 const book = new Book(title, authors, publisher);
                 return book;
             });
-        }        
+        }
         return new Books(bookList.slice(0,5));
     }
 }

@@ -5,10 +5,15 @@ bookwork is a command line application that allows users to search for books usi
 
 This application was developed using bottom up TDD with a top level application coordinating the interaction of the various components.
 
-## Commands
+## Requirements
+- Install [Node.js](https://nodejs.org/en/)
 
-- npm install - Installs all necessary packages
-- npm run start - Starts the application
+## Commands to run application
+
+1. npm install - Installs all necessary packages
+2. npm run start - Starts the application
+
+## Command to test application
 - npm run test - Executes the unit testing suite
 
 ## API Key
@@ -27,7 +32,6 @@ In the future some improvements that could be made to this repo include:
 - Integration testing around the top level application App.js
     - More specifically, integration tests around the SearchBooks functionality would enhance test coverage and enable further changes to be made with confidence
     - Testing at the application level could be enabled by mocking user input
-- Unit test coverage over SaveBooks at the App.js level was enabled by refactoring App.js and would further improve coverage
 - More robust error handling
     - Errors in the API response could be handled on a more granular level
 - Extracting common validation logic
