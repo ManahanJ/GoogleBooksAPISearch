@@ -7,11 +7,12 @@ This application was developed using bottom up TDD with a top level application 
 
 ## Commands
 
+- npm install - Installs all necessary packages
 - npm run start - Starts the application
 - npm run test - Executes the unit testing suite
 
 ## API Key
-In order to surpass the free request limit for the Google Books API, you may provide an API key in the .env directory. Always ensure to keep this API key safe and never push it to a public repository.
+In order to surpass the free request limit for the Google Books API, you may provide an API key in the .env.local directory. Always ensure to keep this API key safe and never push it to a public repository.
 
 ## Technologies
 - Node.js
@@ -24,7 +25,7 @@ In order to surpass the free request limit for the Google Books API, you may pro
 In the future some improvements that could be made to this repo include:
 
 - Integration testing around the top level application App.js
-    - More specifically, integration tests around the SearchBooks functionality  would enhance test coverage and enable further changes to be made with confidence
+    - More specifically, integration tests around the SearchBooks functionality would enhance test coverage and enable further changes to be made with confidence
     - Testing at the application level could be enabled by mocking user input
 - Unit test coverage over SaveBooks at the App.js level was enabled by refactoring App.js and would further improve coverage
 - More robust error handling

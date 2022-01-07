@@ -1,6 +1,7 @@
 import Book from './Book.js';
+import Books from './Books.js';
 
-export default class BookListCreate {
+export default class Library {
     constructor(querySearch) {
         this.querySearch = querySearch;
     }
@@ -8,7 +9,7 @@ export default class BookListCreate {
     async getBooks(queryTerm) {
         let jsonBookList = await this.querySearch.googleQuery(queryTerm);
         let bookList = [];
-        if (jsonBookList !== undefined) {
+        if(jsonBookList !== undefined) {
             bookList = jsonBookList.map(function(jsonBook) {
                 let title = jsonBook.volumeInfo.title;
                 if(title === undefined) {
@@ -29,6 +30,6 @@ export default class BookListCreate {
                 return book;
             });
         }        
-        return bookList.slice(0,5);
+        return new Books(bookList.slice(0,5));
     }
 }

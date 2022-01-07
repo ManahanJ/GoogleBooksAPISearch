@@ -1,22 +1,21 @@
 export default class DisplayList {
-    displayList(bookList) {
-        let formattedBookList = bookList.map(function(unformattedbookList, index) {
-            const bookNumber = index + 1;
+    displayList(books) {
+        let bookNum = 1;
+        let foundBooks = false;
+        while(books.getBook(bookNum) != undefined) {
+            foundBooks = true;
 
-            const title = unformattedbookList.title;
-
-            const authors = unformattedbookList.authors.join(', ');
-
-            const publisher = unformattedbookList.publisher;
-
-            return String(bookNumber + '. "' + title + '" written by: ' + authors + ' and published by: ' + publisher);
-        });
-        if(!formattedBookList.length) {
-            console.log('Sorry! There are no books to be displayed.\r\n')
+            const title = books.getBook(bookNum).title;
+            const authors = books.getBook(bookNum).authors.join(', ');
+            const publisher = books.getBook(bookNum).publisher;
+            
+            console.log(bookNum + ': "' + title + '" written by: ' + authors + ' and published by: ' + publisher);
+            bookNum++;
         }
-        else {
-            formattedBookList.forEach(book => console.log(book));
-            console.log("\r\n");
+
+        if(!foundBooks) {
+            console.log('Sorry! There are no books to be displayed.')
         }
+        console.log('\r\n');
     }
 }

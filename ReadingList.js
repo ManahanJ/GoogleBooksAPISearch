@@ -1,10 +1,11 @@
+import Books from './Books.js';
 export default class ReadingList {
     constructor() {
         this.readingList = [];
     }
 
     getBooks() {
-        return this.readingList;
+        return new Books(this.readingList);
     }
 
     saveBook(book) {

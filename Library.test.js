@@ -1,4 +1,4 @@
-import BookListCreate from './BookListCreate'
+import Library from './Library'
 
 describe ( 'Managing Results from Mock Query', () => {
     //Should be 10 elements long with more verbose fields, the number of elements was shortened to 6 and most fields were excluded for the sake of brevity in tests
@@ -76,16 +76,16 @@ describe ( 'Managing Results from Mock Query', () => {
             }
         }
 
-        const bookListCreator = new BookListCreate(new MockQueryResults());
-        const bookList = await bookListCreator.getBooks("Harry");
+        const library = new Library(new MockQueryResults());
+        const books = await library.getBooks("Harry");
 
-        expect(bookList.length).toBe(5);
-        expect(bookList[4].title).toBe('Harry Potter Page to Screen: Updated Edition');
-        expect(bookList[4].authors).toStrictEqual(['fake author 1 book 5', 'fake author 2 book 5']);
-        expect(bookList[4].publisher).toBe('Harper Design');
+        expect(books.getBook(6)).toBe(undefined);
+        expect(books.getBook(5).title).toBe('Harry Potter Page to Screen: Updated Edition');
+        expect(books.getBook(5).authors).toStrictEqual(['fake author 1 book 5', 'fake author 2 book 5']);
+        expect(books.getBook(5).publisher).toBe('Harper Design');
 
-        expect(bookList[2].title).toBe('Unknown Title');
-        expect(bookList[2].authors).toStrictEqual(['Unknown Authors']);
-        expect(bookList[2].publisher).toBe('Unknown Publisher');
+        expect(books.getBook(3).title).toBe('Unknown Title');
+        expect(books.getBook(3).authors).toStrictEqual(['Unknown Authors']);
+        expect(books.getBook(3).publisher).toBe('Unknown Publisher');
     })
 })

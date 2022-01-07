@@ -6,7 +6,7 @@ describe('Manging Reading List', () => {
     it('is created empty', () => {
         const readingList = new ReadingList();
 
-        expect(readingList.getBooks().length).toBe(0)
+        expect(readingList.getBooks().books.length).toBe(0)
     });
 
     it('one book is saved with all info', () => {
@@ -15,10 +15,10 @@ describe('Manging Reading List', () => {
 
         readingList.saveBook(unsavedBook);
 
-        expect(readingList.getBooks().length).toBe(1);
-        expect(readingList.getBooks()[0].title).toBe('The Great Gatsby');
-        expect(readingList.getBooks()[0].authors).toStrictEqual(['F. Scott Fitzgerald']);
-        expect(readingList.getBooks()[0].publisher).toBe('Books R US');
+        expect(readingList.getBooks().books.length).toBe(1);
+        expect(readingList.getBooks().books[0].title).toBe('The Great Gatsby');
+        expect(readingList.getBooks().books[0].authors).toStrictEqual(['F. Scott Fitzgerald']);
+        expect(readingList.getBooks().books[0].publisher).toBe('Books R US');
     });
 
     it('more than one books are saved with all info', () => {
@@ -29,12 +29,12 @@ describe('Manging Reading List', () => {
         readingList.saveBook(firstUnsavedBook);
         readingList.saveBook(secondUnsavedBook);
 
-        expect(readingList.getBooks().length).toBeGreaterThan(1);
-        expect(readingList.getBooks()[0].title).toBe('The Great Gatsby');
-        expect(readingList.getBooks()[0].authors).toStrictEqual(['F. Scott Fitzgerald']);
-        expect(readingList.getBooks()[0].publisher).toBe('Books R US');
-        expect(readingList.getBooks()[1].title).toBe('The Catcher in the Rye');
-        expect(readingList.getBooks()[1].authors).toStrictEqual(['J. D. Salinger']);
-        expect(readingList.getBooks()[1].publisher).toBe('Books R US');
+        expect(readingList.getBooks().books.length).toBeGreaterThan(1);
+        expect(readingList.getBooks().books[0].title).toBe('The Great Gatsby');
+        expect(readingList.getBooks().books[0].authors).toStrictEqual(['F. Scott Fitzgerald']);
+        expect(readingList.getBooks().books[0].publisher).toBe('Books R US');
+        expect(readingList.getBooks().books[1].title).toBe('The Catcher in the Rye');
+        expect(readingList.getBooks().books[1].authors).toStrictEqual(['J. D. Salinger']);
+        expect(readingList.getBooks().books[1].publisher).toBe('Books R US');
     })
 })

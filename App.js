@@ -3,9 +3,8 @@ import dotenv from 'dotenv';
 import DisplayList from './DisplayList.js';
 import ReadingList from './ReadingList.js';
 import QuerySearch from './QuerySearch.js';
-import BookListCreate from './BookListCreate.js';
-import SelectBook from './SelectBook.js';
-dotenv.config()
+import Library from './Library.js';
+dotenv.config();
 
 async function App() {
     let exit = false;
@@ -15,17 +14,17 @@ async function App() {
     });
     const readingList = new ReadingList();
     const query = new QuerySearch();
-    const formattedList = new DisplayList();
+    const formattedBooks = new DisplayList();
 
     const awaitingUserInput = async () => {
         while(!exit) {
             displayStartingPrompt();
             const initialInput = await retrieveUserInput('Please enter a number assosciated with the action you want to do and then press enter: ', userInput);
             if(initialInput == 1) {
-                await searchBook(query, readingList, formattedList, userInput);
+                await searchBook(query, readingList, formattedBooks, userInput);
             }
             else if(initialInput == 2) {
-                formattedList.displayList(readingList.getBooks());
+                formattedBooks.displayList(readingList.getBooks());
             }
             else if(initialInput == 3) {
                 exit = true;
@@ -54,30 +53,27 @@ async function retrieveUserInput(prompt, communication) {
     return userInput
 }
 
-async function searchBook(query, readingList, formattedList, userInput) {
-    const queryResults = new BookListCreate(query);
+async function searchBook(query, readingList, formattedBooks, userInput) {
+    const library = new Library(query);
     const searchInput = await retrieveUserInput('Please enter a book name or key word to search and then press enter: ', userInput);
-    const bookList = await queryResults.getBooks(searchInput);
+    const books = await library.getBooks(searchInput);
 
-    formattedList.displayList(bookList);
-    if(bookList.length) {
-        const savedBookNumber = await retrieveUserInput('Please enter a number assosciated with the book you want to save to your reading list and then press enter or to save nothing just press enter: ', userInput);
-        saveBook(readingList, bookList, savedBookNumber);
-    }
+    formattedBooks.displayList(books);
+    const savedBookNumber = await retrieveUserInput('Please enter a number assosciated with the book you want to save to your reading list and then press enter, if no books were found or to save nothing just press enter: ', userInput);
+    saveBook(readingList, books, savedBookNumber);
 }
 
-function saveBook(readingList, bookList, savedBookNumber) {
-    const bookSelector = new SelectBook();
-    if(savedBookNumber > 0 && savedBookNumber <= bookList.length) {
-        const selectedBook = bookSelector.selectBook(savedBookNumber, bookList);
-        readingList.saveBook(selectedBook);
-        console.log('The book "' + selectedBook.title + '" has been saved to your reading list!\r\n');
-    }
-    else if(!savedBookNumber) {
+function saveBook(readingList, books, savedBookNumber) {
+    const selectedBook = books.getBook(savedBookNumber);
+    if(!savedBookNumber) {
         console.log('No book has been saved like requested. \r\n')
     }
-    else {
+    else if(selectedBook == undefined){
         console.log('ALERT: No book has been saved, please enter in a number that is assosciated with a displayed book next time! \r\n')
+    }
+    else{
+        readingList.saveBook(selectedBook);
+        console.log('The book "' + selectedBook.title + '" has been saved to your reading list!\r\n');
     }
 }
 
