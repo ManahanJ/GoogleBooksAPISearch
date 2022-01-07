@@ -6,7 +6,7 @@ import QuerySearch from './QuerySearch.js';
 import Library from './Library.js';
 dotenv.config();
 
-async function App() {
+export async function App() {
     let exit = false;
     const userInput = readline.createInterface({
         input: process.stdin,
@@ -76,5 +76,3 @@ export default function saveBook(readingList, books, savedBookNumber) {
         console.log('The book "' + selectedBook.title + '" has been saved to your reading list!\r\n');
     }
 }
-
-App();

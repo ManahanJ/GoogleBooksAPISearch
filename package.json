@@ -2,10 +2,10 @@
   "name": "bookworm",
   "version": "1.0.0",
   "description": "A command line application that uses the Google Books API to search for books and has the ability to add them to a \"Reading List\"",
-  "main": "App.js",
+  "main": "Start.js",
   "type": "module",
   "scripts": {
-    "start": "node App.js",
+    "start": "node Start.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "repository": {

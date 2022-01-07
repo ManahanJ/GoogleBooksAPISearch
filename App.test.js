@@ -1,7 +1,12 @@
 import Books from "./Books";
 import saveBook from './App';
+import { jest } from '@jest/globals'
 
 describe ( 'Integration tests for App level functions', () => {
+
+    beforeEach(() => {
+        jest.spyOn(console, 'log').mockImplementation(() => {});
+    });
 
     const mockBooksData = [
         [
